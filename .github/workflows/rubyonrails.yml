@@ -41,10 +41,10 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          echo $(ruby -v)
           gem install bundler --user-install
           export GEM_HOME=$HOME/.gem
           export PATH=$GEM_HOME/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH
+          echo $GEM_HOME
           bundle install --path $GEM_HOME
 
       - name: Database setup
