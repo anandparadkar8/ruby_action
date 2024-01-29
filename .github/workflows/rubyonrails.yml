@@ -40,16 +40,10 @@ jobs:
           ruby -v
           rbenv global 3.0.0
 
-      - name: Set up gem environment
-        run: |
-          export GEM_HOME=$HOME/.gems
-          export GEM_PATH=$GEM_HOME:/usr/lib/ruby/gems/3.0.0
-          export PATH=$GEM_HOME/bin:$PATH
-
       - name: Install Dependencies
         run: |
-          gem install bundler
-          bundle install --path $GEM_HOME
+          gem install bundler --user-install
+          bundle install
 
       - name: Database setup
         run: |
