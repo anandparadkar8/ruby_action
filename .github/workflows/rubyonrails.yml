@@ -61,6 +61,6 @@ jobs:
 
       - name: Run Tests
         run: |
-        export GEM_HOME=$HOME/.gem
-        export PATH=$GEM_HOME/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH
-        $GEM_HOME/bin/bundle exec rspec
+          export GEM_HOME=$HOME/.gem
+          export PATH=$GEM_HOME/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH
+          $GEM_HOME/bin/bundle exec rspec
