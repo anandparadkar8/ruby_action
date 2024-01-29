@@ -24,7 +24,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Install dependencies
+      - name: Install rbenv
         run: |
           sudo apt-get update
           sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
@@ -38,6 +38,12 @@ jobs:
           git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
           rbenv install 3.0.0
           rbenv global 3.0.0
+
+      - name: Set up gem environment
+        run: |
+          export GEM_HOME=$HOME/.gems
+          export GEM_PATH=$GEM_HOME:/usr/lib/ruby/gems/3.0.0
+          export PATH=$GEM_HOME/bin:$PATH
 
       - name: Install Dependencies
         run: |
