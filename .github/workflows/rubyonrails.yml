@@ -56,7 +56,7 @@ jobs:
           export POSTGRES_USER=user
           export POSTGRES_PASSWORD=password
           export POSTGRES_DB=realyou_test
-          $GEM_HOME/bin/bundle exec rails db:create db:schema:load db:migrate
+          $GEM_HOME/bin/bundle exec rails db:schema:load db:migrate
 
       - name: Run Tests
         run: bundle exec rspec
