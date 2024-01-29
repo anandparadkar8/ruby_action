@@ -49,7 +49,7 @@ jobs:
       - name: Install Dependencies
         run: |
           gem install bundler
-          bundle install
+          bundle install --path $GEM_HOME
 
       - name: Database setup
         run: |
