@@ -16,6 +16,7 @@ jobs:
           POSTGRES_USER: user
           POSTGRES_PASSWORD: password
           POSTGRES_DB: realyou_test
+          POSTGRES_HOST: localhhost
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -52,9 +53,10 @@ jobs:
         run: |
           export GEM_HOME=$HOME/.gem
           export PATH=$GEM_HOME/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH
+          export POSTGRES_USER=user
+          export POSTGRES_PASSWORD=password
+          export POSTGRES_DB=realyou_test
           $GEM_HOME/bin/bundle exec rails db:create db:schema:load db:migrate
-        
-
 
       - name: Run Tests
         run: bundle exec rspec
