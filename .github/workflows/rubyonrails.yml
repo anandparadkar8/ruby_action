@@ -37,11 +37,11 @@ jobs:
           exec $SHELL
           git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
           rbenv install 3.0.0
-          ruby -v
           rbenv global 3.0.0
 
       - name: Install Dependencies
         run: |
+          ruby -v
           gem install bundler --user-install
           bundle install
 
