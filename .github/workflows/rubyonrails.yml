@@ -37,7 +37,7 @@ jobs:
           exec $SHELL
           git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
           rbenv install 3.0.0
-          echo "Ruby Version: $(ruby -v)"
+          echo "Ruby Version: $( -v)"
           rbenv global 3.0.0
 
       - name: Install Dependencies
@@ -47,11 +47,11 @@ jobs:
           echo $GEM_HOME
           bundle install --path $GEM_HOME
 
-     - name: Database setup
-      run: $GEM_HOME/bin/bundle exec rails db:create db:schema:load db:migrate
-      env:
-        GEM_HOME: ${{ github.workspace }}/.gems
-        PATH: ${{ github.workspace }}/.gems/bin:$PATH
+      - name: Database setup
+        run: $GEM_HOME/bin/bundle exec rails db:create db:schema:load db:migrate
+        env:
+          GEM_HOME: ${{ github.workspace }}/.gems
+          PATH: ${{ github.workspace }}/.gems/bin:$PATH
 
 
       - name: Run Tests
