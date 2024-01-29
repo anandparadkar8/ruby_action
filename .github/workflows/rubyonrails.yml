@@ -23,7 +23,9 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        run: |
+          git clone https://github.com/anandparadkar8/ruby_action.git
+          cd ruby_action
 
       - name: Install rbenv
         run: |
