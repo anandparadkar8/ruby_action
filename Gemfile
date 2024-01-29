@@ -65,4 +65,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem 'pg'
+  gem 'rspec-rails', '~> 5.0'
 end
