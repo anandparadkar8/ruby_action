@@ -24,11 +24,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up Ruby
-        run: |
-          \curl -sSL https://get.rvm.io | bash -s stable
-          source ~/.rvm/scripts/rvm
-          rvm install ruby
+      - name: Set up Ruby 3.0.0 with RVM
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y curl gpg
+        \curl -sSL https://get.rvm.io | bash -s stable
+        source ~/.rvm/scripts/rvm
+        rvm install 3.0.0
 
       - name: Install Dependencies
         run: |
