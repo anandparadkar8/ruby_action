@@ -38,6 +38,7 @@ jobs:
 
     - name: Database setup
       run: |
+        export POSTGRES_USER=postgres
         export POSTGRES_PASSWORD=postgres
         bundle exec rails db:create RAILS_ENV=test
         bundle exec rails db:schema:load RAILS_ENV=test
