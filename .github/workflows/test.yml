@@ -44,4 +44,7 @@ jobs:
         bundle exec rails db:schema:load RAILS_ENV=test
 
     - name: Run tests
-      run: bundle exec rails test
+      run: |
+        export POSTGRES_USER=postgres
+        export POSTGRES_PASSWORD=postgres
+        bundle exec rails test
