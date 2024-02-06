@@ -19,6 +19,8 @@ jobs:
       run: |
         sudo chmod -R 777 /opt/hostedtoolcache
         sudo chown -R $USER /opt/hostedtoolcache
+      # Separate step for setting up Ruby using the action
+    - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.0.2 
