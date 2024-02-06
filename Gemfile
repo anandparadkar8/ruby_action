@@ -60,7 +60,6 @@ group :development do
   # gem "spring"
 end
 group :development, :test do
-  gem 'rspec-rails'
   gem 'pg'
   gem 'capybara'
 end
