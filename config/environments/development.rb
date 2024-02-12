@@ -18,7 +18,12 @@ Rails.application.configure do
   config.server_timing = true
   config.hosts << "ec2-13-127-237-38.ap-south-1.compute.amazonaws.com:3000"
 
+
+
   # Enable/disable caching. By default caching is disabled.
+
+
+  
   # Run rails dev:cache to toggle caching.
   if Rails.root.join("tmp/caching-dev.txt").exist?
     config.action_controller.perform_caching = true
