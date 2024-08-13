@@ -80,3 +80,7 @@ jobs:
         export POSTGRES_USER=postgres
         export POSTGRES_PASSWORD=postgres
         bundle exec rails test
+    
+    - name: Build and run Rails container
+      run: |
+        sudo docker-compose up -d
