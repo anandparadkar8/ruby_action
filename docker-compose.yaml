@@ -1,6 +1,8 @@
 version: '3'
 services:
   web:
+    command: >
+      sh -c "bundle exec rake db:migrate && rails server -b 0.0.0.0"
     image: your-rails-image:latest
     build:
       context: .

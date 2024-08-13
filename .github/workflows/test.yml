@@ -81,6 +81,12 @@ jobs:
         export POSTGRES_PASSWORD=postgres
         bundle exec rails test
     
+    - name: Build Docker image
+      run: docker-compose build
+
+    - name: Run database migrations
+      run: docker-compose run web bundle exec rake db:migrate
+    
     - name: Build and run Rails container
       run: |
         sudo docker-compose up -d
