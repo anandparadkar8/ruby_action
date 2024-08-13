@@ -1,5 +1,3 @@
-# .github/workflows/test.yml
-
 name: Run Tests
 
 on:
@@ -54,9 +52,11 @@ jobs:
         sudo usermod -aG docker $USER
 
     - name: Database setup
+      env:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_HOST: localhost
       run: |
-        export POSTGRES_USER=postgres
-        export POSTGRES_PASSWORD=postgres
         bundle exec rails db:create
         bundle exec rake db:migrate
         bundle exec rails db:schema:load
@@ -67,3 +67,5 @@ jobs:
     - name: Run Docker containers
       run: docker-compose up -d
 
+    - name: Run Tests
+      run: docker-compose exec web bundle exec rspec
