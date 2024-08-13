@@ -17,7 +17,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: realyou_test
         ports:
-          - "5433:5432"  # Map container's 5432 port to 5433 on the host
+          - "5433:5432"  # Using port 5433 to avoid conflicts
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
@@ -45,28 +45,11 @@ jobs:
           docker-ce \
           docker-compose
 
-    - name: Configure Docker
-      run: |
-        sudo systemctl start docker
-        sudo systemctl enable docker
-        sudo usermod -aG docker $USER
-
-    - name: Database setup
-      env:
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: postgres
-        POSTGRES_HOST: postgres  # Use the Docker service name
-        POSTGRES_PORT: 5432  # Connect to PostgreSQL within the Docker network
-      run: |
-        bundle exec rails db:create
-        bundle exec rake db:migrate
-        bundle exec rails db:schema:load
-
     - name: Build Docker image
       run: docker-compose build
 
-    - name: Run Docker containers
-      run: docker-compose up -d
-
-    - name: Run Tests
-      run: docker-compose exec web bundle exec rspec
+    - name: Build and Run Docker Compose
+      run: |
+        docker-compose up -d  # Build and start containers in detached mode
+        docker-compose exec web bundle exec rspec  # Run tests inside web container
+        
