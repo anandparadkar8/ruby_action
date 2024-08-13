@@ -12,7 +12,9 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/realyou_test
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy  # Wait until postgres is healthy
+
   postgres:
     image: postgres:latest
     environment:
@@ -20,4 +22,9 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: realyou_test
     ports:
-      - "5432:5432"
+      - "5433:5432"  # Change to avoid port conflicts on the host
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
