@@ -72,8 +72,13 @@ jobs:
       run: |
         export POSTGRES_USER=postgres
         export POSTGRES_PASSWORD=postgres
+        # Create the database if it doesn't exist
         bundle exec rails db:create RAILS_ENV=test
+        # Migrate the database
+        bundle exec rake db:migrate RAILS_ENV=test
+        # Load the schema (usually used if you're starting from a clean slate)
         bundle exec rails db:schema:load RAILS_ENV=test
+      
 
     - name: Run tests
       run: |
@@ -84,9 +89,6 @@ jobs:
     - name: Build Docker image
       run: docker-compose build
 
-    - name: Run database migrations
-      run: docker-compose run web bundle exec rake db:migrate
-    
     - name: Build and run Rails container
       run: |
         sudo docker-compose up -d
