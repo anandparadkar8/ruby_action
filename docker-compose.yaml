@@ -22,7 +22,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: realyou_test
     ports:
-      - "5433:5432"  # Change to avoid port conflicts on the host
+      - "5432:5432"  # Change to avoid port conflicts on the host
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
